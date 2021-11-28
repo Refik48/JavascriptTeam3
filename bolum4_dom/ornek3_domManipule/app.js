@@ -31,5 +31,33 @@ const h1 = document.createElement("h1");
 const yazi = document.createTextNode("Programlama Dilleri");
 h1.appendChild(yazi);
 // document.body.appendChild(h1); 1.yol
-sonDiv.after(h1); // 2.yol
+sonDiv.after(h1); // 2.yol // sonDiv in sonrasina ekledik. ama index.html de gozukmez.Sonrasina index.htmlde ne eklersek ekleyelim, ekledigimiz araya giremez
 //sonDiv.before(h1); // 3.yol
+h1.className = "yeni-h1"; //olusturdugumuz  h1 elemanina class adi tanimladim
+
+//*Ekle butonuna her tiklandiginda bu fonksiyon calissin
+document.querySelector(".ekle").onclick = function () {
+  //ekleme yapilacak listeyi alalim
+  const liste = document.querySelector(".liste");
+  // input elemanina girilen yeni satirin degerini alalim.
+  const satir = document.querySelector(".dil");
+
+  //yeni girilen satiri saklamak icin bir li olusturalim.
+  const yeniLi = document.createElement("li");
+  //yeni li icin textnode olusturalim.
+  const textNode = document.createTextNode(satir.value);
+  //bu textNodu li'ye baglayalim
+  yeniLi.appendChild(textNode);
+  //yeni eklene satiri var olan ul'ye baglayalim.
+  liste.appendChild(yeniLi);
+  //input icinde kalan veriyi silelim.
+  satir.value = "";
+};
+
+//* Sil butonuna her tiklandiginda
+document.querySelector(".sil").onclick = function () {
+  const liste = document.querySelector(".liste");
+
+  liste.removeChild(liste.lastElementChild); // en son elemani siler
+  //liste.removeChild(liste.firstElementChild) // ilk elemani siler
+};
