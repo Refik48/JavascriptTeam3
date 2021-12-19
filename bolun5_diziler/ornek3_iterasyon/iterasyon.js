@@ -76,16 +76,83 @@ ogrenciler.forEach((z) => console.log(z));
 console.log(ogrenciler);
 
 //-------------- ÖRNEK -------------------
-const fiyatlar = [200, 300, 125, 450, 333, 123];
+const fiyatlar = [200, 300, 125, 450, 333, 133];
 let toplam = 0;
 fiyatlar.forEach((f) => (toplam += f));
 console.log(toplam);
 document.querySelector(".toplam").innerHTML = `${toplam} TL`;
+
+//-------------- ÖRNEK -------------------
+// forEach ile Parametre kullanım detaylari
+toplam = 0;
+fiyatlar.forEach((a, i, dizi) => {
+  toplam += a;
+  console.log(`${i} . iterasyon: ${toplam}`);
+});
+console.log(toplam);
+
+//-------------- ÖRNEK -------------------
+// fiyatlar dizisinde her bir fiyata %10 zam yapalım.
+let toplamFiyat = 0;
+
+let zamliFiyatlar = [];
+fiyatlar.forEach((deger, indis) => {
+  zamliFiyatlar[indis] = (deger * 1.1).toFixed(1);
+  toplamFiyat += Number(zamliFiyatlar[indis]);
+});
+console.log(zamliFiyatlar);
+console.log(toplamFiyat);
+
 // ======================================================
 //                       MAP METODU
 // ======================================================
 
 //-------------- ÖRNEK -------------------
+// ornek= Dizinin her bir elemaninin 5 katini aliniz.Please
+const rakamlar = [3, 5, 8, 3, -2, 5, -7, 9];
+const besKat = rakamlar.map((x) => x * 5);
+console.log(besKat);
+console.log(rakamlar);
+
+//-------------- ÖRNEK -------------------
+// isimler dizisin içerisindeki her ismi büyük harf olarak
+// yeni bir diziye saklayalım.
+const isimler = [
+  "Ahmet",
+  "mehmet",
+  "ismet",
+  "SAFFET",
+  "Can",
+  "Canan",
+  "Cavidan",
+];
+
+// map() metodu normal şartlarda bir dizi döndürür.
+const buyuk = isimler.map((ad) => ad.toUpperCase());
+console.log(buyuk);
+buyuk.forEach((ad) => console.log(ad));
+
+// map() metodundan sonra eğer forEach gibi bir terminal işlemi
+// kullanılırsa map() metodu bir dizi döndürmez.
+isimler.map((ad) => ad.toUpperCase()).forEach((ad) => console.log(ad));
+
+//-------------- ÖRNEK -------------------
+// tlFiyatlar dizisindeki ürün fiyatlarini HTLM inputlarina girilen
+// Dolar ve Euro paritelerine göre dolar ve euroya çevirerek HTML de
+// gösteriniz.
+tlFiyatlar = [120, 340, 550, 245, 322.5, 987];
+
+const dolarKur = document.querySelector(".dolar").value;
+const yuroKur = document.querySelector(".yuro").value;
+
+const dolar = document.querySelector(".dolar-fiyat");
+const yuro = document.querySelector(".yuro-fiyat");
+
+const dolarFiyatlar = tlFiyatlar.map((tl) => tl / dolarKur);
+const yuroFiyatlar = tlFiyatlar.map((tl) => tl / yuroKur);
+
+dolar.innerHTML = dolarFiyatlar;
+yuro.innerHTML = dolarFiyatlar;
 
 // ======================================================
 //                       FILTER METODU
