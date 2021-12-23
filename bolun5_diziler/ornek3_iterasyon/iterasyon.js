@@ -142,23 +142,44 @@ isimler.map((ad) => ad.toUpperCase()).forEach((ad) => console.log(ad));
 // gösteriniz.
 tlFiyatlar = [120, 340, 550, 245, 322.5, 987];
 
-const dolarKur = document.querySelector(".dolar").value;
-const yuroKur = document.querySelector(".yuro").value;
+const dolarKur = document.querySelector(".dolar");
+const yuroKur = document.querySelector(".yuro");
 
 const dolar = document.querySelector(".dolar-fiyat");
 const yuro = document.querySelector(".yuro-fiyat");
 
-const dolarFiyatlar = tlFiyatlar.map((tl) => tl / dolarKur);
-const yuroFiyatlar = tlFiyatlar.map((tl) => tl / yuroKur);
+dolarKur.onchange = function () {
 
-dolar.innerHTML = dolarFiyatlar;
-yuro.innerHTML = dolarFiyatlar;
+  dolarKur.value < 0 ? alert("Dolar Kur 0'da kucuk olamaz.") :
+  
+  dolar.innerHTML = tlFiyatlar.map((tl) => Math.round(tl / dolarKur.value));
+};
+
+yuroKur.onchange = function () {
+  
+yuroKur.value < 0 ? alert("Yuro Kur 0'dan kucuk olamaz..Zorlama kardesim!!!!") :
+
+  yuro.innerHTML = tlFiyatlar.map((tl) => Math.round(tl / yuroKur.value))
+};
 
 // ======================================================
 //                       FILTER METODU
 // ======================================================
 // tlFiyatlar listesinde fiyatı 250 TL den az olanlari ayri
 // bir diziye saklayalim.
+ 
+const kucuk250 = tlFiyatlar.filter( (l) => l < 250 );
+
+console.log(kucuk250);
+
+//fiyati 350 'den kucuk olanlari yaziriniz
+
+tlFiyatlar.filter((c) => c < 350 ).forEach( (s) => console.log(s));
+
+//Kucukten buyuge siralama
+console.log(tlFiyatlar.sort((a,b) => a - b));
+
+
 
 // ======================================================
 //                       PIPELINE
